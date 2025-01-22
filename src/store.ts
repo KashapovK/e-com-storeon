@@ -1,5 +1,5 @@
 import { createStoreon } from "storeon";
-import { StoreState, StoreEvents } from "./types/types";
+import { StoreState, StoreEvents } from "./types";
 
 const store = createStoreon<StoreState, StoreEvents>([
   (store) => {

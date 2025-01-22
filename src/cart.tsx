@@ -1,7 +1,7 @@
 import React from "react";
 import { useStoreon } from "storeon/react";
 import "./css/cart.css";
-import { CartItem } from "./types/types";
+import { CartItem } from "./types";
 
 const Cart: React.FC = () => {
   const { cart } = useStoreon("cart");

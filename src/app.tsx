@@ -3,7 +3,7 @@ import Product from "./product";
 import Cart from "./cart";
 import { useStoreon } from "storeon/react";
 import products from "./mocks/products";
-import { CartItem } from "./types/types";
+import { CartItem } from "./types";
 
 const App: React.FC = () => {
   const { dispatch, products: validProducts } = useStoreon("products");
