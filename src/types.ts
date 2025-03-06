@@ -14,9 +14,9 @@ export interface StoreState {
 }
 
 export interface StoreEvents {
-  "products/set": Product[];
-  "cart/add": Product;
-  "cart/remove": string;
-  "cart/increase": string;
-  "cart/decrease": string;
+  'products/set': Product[];
+  'cart/add': Product;
+  'cart/remove': string;
+  'cart/increase': string;
+  'cart/decrease': string;
 }

@@ -1,7 +1,7 @@
-import React from "react";
-import { useStoreon } from "storeon/react";
-import "./css/product.css";
-import { CartItem } from "./types";
+import React from 'react';
+import { useStoreon } from 'storeon/react';
+import './css/product.css';
+import { CartItem } from './types';
 
 interface ProductProps {
   product: CartItem;
@@ -11,7 +11,7 @@ const Product: React.FC<ProductProps> = ({ product }) => {
   const { dispatch } = useStoreon();
 
   const addToCart = (product: CartItem) => {
-    dispatch("cart/add", product);
+    dispatch('cart/add', product);
   };
 
   return (

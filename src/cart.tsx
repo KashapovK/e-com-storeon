@@ -1,15 +1,15 @@
-import React from "react";
-import { useStoreon } from "storeon/react";
-import "./css/cart.css";
-import { CartItem } from "./types";
+import React from 'react';
+import { useStoreon } from 'storeon/react';
+import './css/cart.css';
+import { CartItem } from './types';
 
 const Cart: React.FC = () => {
-  const { cart } = useStoreon("cart");
+  const { cart } = useStoreon('cart');
   const { dispatch } = useStoreon();
 
-  const removeFromCart = (id: string) => dispatch("cart/remove", id);
-  const increaseQuantity = (id: string) => dispatch("cart/increase", id);
-  const decreaseQuantity = (id: string) => dispatch("cart/decrease", id);
+  const removeFromCart = (id: string) => dispatch('cart/remove', id);
+  const increaseQuantity = (id: string) => dispatch('cart/increase', id);
+  const decreaseQuantity = (id: string) => dispatch('cart/decrease', id);
 
   return (
     <div className="cart-container">
