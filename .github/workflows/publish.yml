@@ -10,27 +10,28 @@ permissions:
   contents: write
 
 jobs:
-  deploy:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+  publish:
     runs-on: ubuntu-latest
+    if: github.event.workflow_run.conclusion == 'success'
     steps:
       - name: Клонирование репозитория
         uses: actions/checkout@v4
 
-      - name: Установка Node.js
-        uses: actions/setup-node@v4
+      - name: Загрузка артефактов сборки
+        uses: dawidd6/action-download-artifact@v4
         with:
-          node-version: '22'
+          name: actions_artifacts
+          workflow: ${{ github.event.workflow_run.workflow_id }}
 
-      - name: Установка зависимостей и сборка приложения
+      - name: Get PR number
         run: |
-          npm install
-          npm run build
+          echo "PR=$(cat env | grep "prev.event.number" | awk -F '=' '{print $2}')" >> $GITHUB_ENV
+          echo "BUILD_URL=$(echo ${{ github.repository }} | sed -r 's/\//\.github\.io\//g')" >> $GITHUB_ENV
 
       - name: Развёртывание на GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages
           folder: dist
           clean: true
-          force: true
+          target-folder: ${{ env.PR }}
+          commit-message: '✔️ Сборка #${{ env.PR }}'
