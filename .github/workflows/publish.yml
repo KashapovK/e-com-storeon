@@ -5,7 +5,6 @@ on:
     workflows: ["Build"]
     types:
       - completed
-
   workflow_dispatch:
 
 permissions:
@@ -32,10 +31,15 @@ jobs:
         with:
           name: actions_artifacts
           path: actions_artifacts
+
+      - name: Move build files
+        run: mv actions_artifacts/dist site
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: 'site/'
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
