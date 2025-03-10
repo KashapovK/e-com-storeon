@@ -26,7 +26,7 @@ jobs:
           cp -r public/* dist/ 2>/dev/null || :
           mkdir -p actions_artifacts
           echo "prev.event.number=${{ github.event.number }}" > actions_artifacts/env
-          mv dist actions_artifacts/
+          mv dist actions_artifacts
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
