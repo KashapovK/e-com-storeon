@@ -18,20 +18,14 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Загрузка артефактов сборки
-        uses: dawidd6/action-download-artifact@v4
+        uses: actions/download-artifact@v4
         with:
           name: actions_artifacts
-          workflow: ${{ github.event.workflow_run.workflow_id }}
-
-      - name: Get PR number
-        run: |
-          echo "PR=$(cat env | grep "prev.event.number" | awk -F '=' '{print $2}')" >> $GITHUB_ENV
-          echo "BUILD_URL=$(echo ${{ github.repository }} | sed -r 's/\//\.github\.io\//g')" >> $GITHUB_ENV
+          path: actions_artifacts
 
       - name: Развёртывание на GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: dist
+          folder: actions_artifacts/dist
           clean: true
-          target-folder: ${{ env.PR }}
-          commit-message: '✔️ Сборка #${{ env.PR }}'
+          commit-message: '✔️ Сборка для GitHub Pages'
