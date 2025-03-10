@@ -6,6 +6,7 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
+  base: '/e-com-storeon/',
   test: {
     globals: true,
     environment: 'jsdom',
