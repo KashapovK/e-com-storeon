@@ -2,6 +2,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import App from '../src/app';
 import { StoreContext } from 'storeon/react';
 import { createAppStore } from '../src/store';
+import { expect } from 'vitest';
 
 describe('App Component', () => {
   test('рендерит карточки продуктов после загрузки продуктов', async () => {
@@ -12,10 +13,11 @@ describe('App Component', () => {
       </StoreContext.Provider>,
     );
 
-    expect(screen.getByText(/Интернет-магазин/i)).toBeInTheDocument();
+    expect(screen.getByText(/Интернет-магазин/i)).toBeDefined();
 
     await waitFor(() => {
-      expect(screen.getAllByText(/Добавить в корзину/i).length).greaterThan(0);
+      const buttons = screen.getAllByText(/Добавить в корзину/i);
+      expect(buttons.length).toBeGreaterThan(0);
     });
   });
 });
